@@ -200,9 +200,82 @@ tasks.register("brandUiSources") {
     }
 }
 
+// ORBITA HUD is intentionally local-only: no extra ADB polling, no telemetry
+// requests, and no additional video settings are sent to the controller.
+tasks.register("injectOrbitaHud") {
+    doLast {
+        val source = file("src/main/java/tech/devline/scropy_ui/StreamActivity.kt")
+        var text = source.readText()
+        val anchor = """        if (isConnected) {
+            FloatingControls("""
+        if (!text.contains("private fun BoxScope.OrbitaHud(")) {
+            text = text.replace(
+                anchor,
+                """        if (isConnected) {
+            OrbitaHud(statusText)
+            FloatingControls("""
+            )
+            text += """
+
+@Composable
+private fun BoxScope.OrbitaHud(status: String) {
+    Surface(
+        modifier = Modifier
+            .align(Alignment.TopStart)
+            .padding(start = 14.dp, top = 12.dp),
+        shape = RoundedCornerShape(14.dp),
+        color = Color(0x99101635),
+        contentColor = Color.White,
+        shadowElevation = 4.dp,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(9.dp),
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+        ) {
+            Text("◉", color = Color(0xFF40DFFF), style = MaterialTheme.typography.titleMedium)
+            Column {
+                Text(
+                    "ОРБИТА HUD",
+                    color = Color(0xFF9EEBFF),
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    status,
+                    color = Color.White.copy(alpha = 0.72f),
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+
+    Surface(
+        modifier = Modifier
+            .align(Alignment.BottomStart)
+            .padding(start = 14.dp, bottom = 12.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = Color(0x88101635),
+        contentColor = Color.White,
+    ) {
+        Text(
+            "USB • 30 FPS • LOW LOAD",
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+            color = Color(0xFFB88CFF),
+            style = MaterialTheme.typography.labelSmall,
+        )
+    }
+}
+"""
+            source.writeText(text)
+        }
+    }
+}
+
 tasks.named("preBuild") {
     dependsOn("copyScrcpyServer")
     dependsOn("brandUiSources")
+    dependsOn("injectOrbitaHud")
 }
 
 android {
