@@ -9,6 +9,14 @@
     <string name="new_connection">Новое подключение</string>
     <string name="saved_devices_empty">Сохранённых устройств пока нет</string>
     <string name="connect">Подключить</string>
+    <string name="disconnect">Отключить</string>
+    <string name="devices">Устройства</string>
+    <string name="settings">Настройки</string>
+    <string name="stream">Трансляция</string>
+    <string name="terminal">Терминал</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="retry">Повторить</string>
     <string name="status_connecting">Подключение…</string>
     <string name="status_pushing">Подготовка трансляции…</string>
     <string name="status_starting">Запуск изображения…</string>
