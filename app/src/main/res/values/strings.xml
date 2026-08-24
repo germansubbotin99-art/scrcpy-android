@@ -5,6 +5,10 @@
     <string name="port_hint">ADB-порт (по умолчанию 5555)</string>
     <string name="btn_connect">Подключить по Wi‑Fi</string>
     <string name="btn_usb">Подключить по USB / OTG</string>
+    <string name="scan_usb">Сканировать USB-устройства</string>
+    <string name="new_connection">Новое подключение</string>
+    <string name="saved_devices_empty">Сохранённых устройств пока нет</string>
+    <string name="connect">Подключить</string>
     <string name="status_connecting">Подключение…</string>
     <string name="status_pushing">Подготовка трансляции…</string>
     <string name="status_starting">Запуск изображения…</string>
