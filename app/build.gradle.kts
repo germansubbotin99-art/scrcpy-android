@@ -20,13 +20,14 @@ tasks.register<Copy>("copyScrcpyServer") {
     }
 }
 
-// STITCHLINK v1.2: translate the legacy hard-coded Compose labels before compile.
-// The upstream project keeps most UI text directly in MainActivity.kt, so this
-// build step lets us localise the app without touching its connection logic.
+// STITCHLINK v1.2 branding layer. Upstream keeps many Compose labels directly
+// in MainActivity.kt, so we localise and restyle that screen before compilation
+// without touching its USB/ADB connection logic.
 tasks.register("brandUiSources") {
     doLast {
         val source = file("src/main/java/tech/devline/scropy_ui/MainActivity.kt")
         var text = source.readText()
+
         val replacements = linkedMapOf(
             "\"Devices\"" to "\"STITCHLINK • ОРБИТА\"",
             "\"+ New\"" to "\"+ Новое подключение\"",
@@ -58,6 +59,143 @@ tasks.register("brandUiSources") {
             "\"OK\"" to "\"Готово\""
         )
         replacements.forEach { (from, to) -> text = text.replace(from, to) }
+
+        val oldHome = """
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("STITCHLINK • ОРБИТА") },
+                actions = { TextButton(onClick = onNewConnection) { Text("+ Новое подключение") } },
+            )
+        }
+    ) { padding ->
+        Box(modifier = Modifier.padding(padding).fillMaxSize()) {
+        if (devices.isEmpty()) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        "Сохранённых устройств пока нет",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(Modifier.height(16.dp))
+                    Button(onClick = onNewConnection) { Text("+ Подключить устройство") }
+                }
+            }
+        } else {
+""".trimIndent()
+
+        val newHome = """
+    Scaffold(
+        containerColor = Color(0xFF070B22),
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color(0xFF070B22),
+                    titleContentColor = Color(0xFFF1F5FF),
+                    actionIconContentColor = Color(0xFF35C8FF),
+                ),
+                title = {
+                    Column {
+                        Text(
+                            "STITCHLINK",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = Color(0xFF8BE4FF),
+                        )
+                        Text(
+                            "ОРБИТА • Android Link",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color(0xFFAAB6DC),
+                        )
+                    }
+                },
+                actions = {
+                    TextButton(onClick = onNewConnection) {
+                        Text("+ Подключить", color = Color(0xFFE34DFF))
+                    }
+                },
+            )
+        }
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .background(Color(0xFF070B22))
+        ) {
+        if (devices.isEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 28.dp, vertical = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Surface(
+                    shape = androidx.compose.foundation.shape.RoundedCornerShape(28.dp),
+                    color = Color(0xFF12183A),
+                    tonalElevation = 8.dp,
+                    shadowElevation = 12.dp,
+                    modifier = Modifier.fillMaxWidth(0.78f),
+                ) {
+                    Column(
+                        modifier = Modifier.padding(horizontal = 30.dp, vertical = 28.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Text(
+                            "◉",
+                            fontSize = 54.sp,
+                            color = Color(0xFF8B5CFF),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            "ОРБИТА ГОТОВА",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = Color(0xFFF1F5FF),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            "Подключи Android-устройство по USB / OTG или Wi‑Fi",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Color(0xFFAAB6DC),
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            "USB/OTG • ожидание устройства",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color(0xFF35C8FF),
+                        )
+                        Spacer(Modifier.height(24.dp))
+                        Button(
+                            onClick = onNewConnection,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF8B5CFF),
+                                contentColor = Color.White,
+                            ),
+                            shape = androidx.compose.foundation.shape.RoundedCornerShape(18.dp),
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text("＋ ПОДКЛЮЧИТЬ УСТРОЙСТВО")
+                        }
+                        Spacer(Modifier.height(12.dp))
+                        Text(
+                            "STITCHLINK • ОРБИТА v1.2",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color(0xFF6977A8),
+                        )
+                    }
+                }
+            }
+        } else {
+""".trimIndent()
+
+        if (text.contains(oldHome)) {
+            text = text.replace(oldHome, newHome)
+        }
+
         source.writeText(text)
     }
 }
