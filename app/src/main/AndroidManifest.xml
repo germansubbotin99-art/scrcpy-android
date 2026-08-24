@@ -37,7 +37,7 @@
             android:name=".StreamActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/Theme.Scropy" />
     </application>
