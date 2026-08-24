@@ -13,14 +13,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Scropy"
+        android:theme="@style/Theme.Orbita"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Scropy">
+            android:theme="@style/Theme.Orbita">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,8 +30,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/usb_device_filter" 
-            />
+                android:resource="@xml/usb_device_filter" />
         </activity>
         <activity
             android:name=".StreamActivity"
@@ -39,6 +38,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/Theme.Scropy" />
+            android:theme="@style/Theme.Orbita" />
     </application>
 </manifest>
