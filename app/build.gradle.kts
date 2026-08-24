@@ -11,7 +11,6 @@ val keystoreProps = Properties().also { props ->
     if (file.exists()) props.load(file.inputStream())
 }
 
-// Copy the scrcpy server JAR into assets before building
 tasks.register<Copy>("copyScrcpyServer") {
     val serverApk = rootProject.file("../server/build/outputs/apk/release/server-release-unsigned.apk")
     if (serverApk.exists()) {
@@ -31,26 +30,16 @@ android {
         applicationId = "tech.devline.scropy_ui"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.1-landscape-plus"
-
+        versionCode = 3
+        versionName = "1.2-stitchlink-orbita"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
-        }
+        ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
     }
 
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-        }
-    }
+    externalNativeBuild { cmake { path = file("src/main/cpp/CMakeLists.txt") } }
 
     signingConfigs {
         create("release") {
-            // Only wire up release signing when keystore.properties is present,
-            // otherwise rootProject.file("") throws and even debug builds fail.
             val storeFilePath = keystoreProps.getProperty("storeFile", "")
             if (storeFilePath.isNotEmpty()) {
                 storeFile = rootProject.file(storeFilePath)
@@ -63,10 +52,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -74,12 +60,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    buildFeatures {
-        compose = true
-    }
+    kotlinOptions { jvmTarget = "11" }
+    buildFeatures { compose = true }
 }
 
 dependencies {
