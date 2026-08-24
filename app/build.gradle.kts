@@ -19,7 +19,53 @@ tasks.register<Copy>("copyScrcpyServer") {
         rename { "scrcpy-server" }
     }
 }
-tasks.named("preBuild") { dependsOn("copyScrcpyServer") }
+
+// STITCHLINK v1.2: translate the legacy hard-coded Compose labels before compile.
+// The upstream project keeps most UI text directly in MainActivity.kt, so this
+// build step lets us localise the app without touching its connection logic.
+tasks.register("brandUiSources") {
+    doLast {
+        val source = file("src/main/java/tech/devline/scropy_ui/MainActivity.kt")
+        var text = source.readText()
+        val replacements = linkedMapOf(
+            "\"Devices\"" to "\"STITCHLINK • ОРБИТА\"",
+            "\"+ New\"" to "\"+ Новое подключение\"",
+            "\"No saved devices yet.\"" to "\"Сохранённых устройств пока нет\"",
+            "\"+ New Connection\"" to "\"+ Подключить устройство\"",
+            "\"About\"" to "\"О приложении\"",
+            "\"Edit\"" to "\"Изменить\"",
+            "\"Connecting...\"" to "\"Подключение…\"",
+            "\"Connection failed\"" to "\"Ошибка подключения\"",
+            "\"Stream\"" to "\"Трансляция\"",
+            "\"Shell\"" to "\"Терминал\"",
+            "\"Edit connection\"" to "\"Изменить подключение\"",
+            "\"Name\"" to "\"Название\"",
+            "\"IP address\"" to "\"IP-адрес\"",
+            "\"Port\"" to "\"Порт\"",
+            "\"Save\"" to "\"Сохранить\"",
+            "\"Cancel\"" to "\"Отмена\"",
+            "\"New Connection\"" to "\"Новое подключение\"",
+            "\"< Back\"" to "\"< Назад\"",
+            "\"How do you want to connect?\"" to "\"Как подключить устройство?\"",
+            "\"ADB over WiFi\"" to "\"ADB по Wi‑Fi\"",
+            "\"ADB over USB\"" to "\"ADB по USB / OTG\"",
+            "\"WiFi Connection\"" to "\"Подключение по Wi‑Fi\"",
+            "\"What do you want to do?\"" to "\"Выберите режим\"",
+            "\"Device IP address\"" to "\"IP-адрес устройства\"",
+            "\"USB Connection\"" to "\"Подключение по USB\"",
+            "\"Retry\"" to "\"Повторить\"",
+            "\"Go Back\"" to "\"Назад\"",
+            "\"OK\"" to "\"Готово\""
+        )
+        replacements.forEach { (from, to) -> text = text.replace(from, to) }
+        source.writeText(text)
+    }
+}
+
+tasks.named("preBuild") {
+    dependsOn("copyScrcpyServer")
+    dependsOn("brandUiSources")
+}
 
 android {
     namespace = "tech.devline.scropy_ui"
