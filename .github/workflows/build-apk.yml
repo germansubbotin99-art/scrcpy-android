@@ -12,6 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Fetch BoringSSL dependency
+        run: |
+          rm -rf app/src/main/cpp/boringssl
+          git clone https://boringssl.googlesource.com/boringssl app/src/main/cpp/boringssl
+          cd app/src/main/cpp/boringssl
+          git checkout a2f9a2474d0703e6ac3111a07129ead7c5aa8245
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
