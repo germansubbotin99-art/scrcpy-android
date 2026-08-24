@@ -1,15 +1,20 @@
 <resources>
     <string name="app_name">STITCHLINK • ОРБИТА</string>
-    <string name="connect_title">Подключение Android-устройства</string>
+    <string name="connect_title">Подключение устройства</string>
     <string name="host_hint">IP-адрес устройства (например 192.168.1.5)</string>
     <string name="port_hint">ADB-порт (по умолчанию 5555)</string>
     <string name="btn_connect">Подключить по Wi‑Fi</string>
     <string name="btn_usb">Подключить по USB / OTG</string>
     <string name="status_connecting">Подключение…</string>
-    <string name="status_pushing">Подготовка сервера…</string>
-    <string name="status_starting">Запуск трансляции…</string>
-    <string name="status_streaming">Трансляция</string>
-    <string name="error_no_server">scrcpy-server не найден в ресурсах приложения.</string>
+    <string name="status_pushing">Подготовка трансляции…</string>
+    <string name="status_starting">Запуск изображения…</string>
+    <string name="status_streaming">Трансляция активна</string>
+    <string name="error_no_server">Сервер трансляции не найден.</string>
     <string name="error_connection">Ошибка подключения: %1$s</string>
     <string name="trust_prompt">Разрешите USB-отладку на подключённом устройстве.</string>
+    <string name="about_title">О STITCHLINK • ОРБИТА</string>
+    <string name="about_text">STITCHLINK • ОРБИТА — система трансляции изображения для операторских Android-устройств. Оптимизирована для USB OTG, низкой задержки и работы с оборудованием БПЛА.</string>
+    <string name="mode_low_load">Режим низкой нагрузки</string>
+    <string name="mode_flight">Режим полёта</string>
+    <string name="engineering_mode">Инженерный режим</string>
 </resources>
