@@ -18,6 +18,10 @@
     <string name="trust_prompt">Разрешите USB-отладку на подключённом устройстве.</string>
     <string name="about_title">О STITCHLINK • ОРБИТА</string>
     <string name="about_text">STITCHLINK • ОРБИТА — система трансляции изображения для операторских Android-устройств. Оптимизирована для USB OTG, низкой задержки и работы с оборудованием БПЛА.</string>
+    <string name="developer_label">Разработчик:</string>
+    <string name="developer_name">STITCHLINK Engineering</string>
+    <string name="technical_lead_label">Технический руководитель:</string>
+    <string name="technical_lead_name">Nord</string>
     <string name="mode_low_load">Режим низкой нагрузки</string>
     <string name="mode_flight">Режим полёта</string>
     <string name="engineering_mode">Инженерный режим</string>
