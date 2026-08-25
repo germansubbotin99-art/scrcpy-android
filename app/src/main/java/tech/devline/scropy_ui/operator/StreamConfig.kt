@@ -15,7 +15,7 @@ object StreamConfig {
     )
 
     @Volatile
-    var currentMode: Mode = Mode.FLIGHT
+    var currentMode: Mode = Mode.PILOT
 
     fun current(): Profile {
         return when (currentMode) {
@@ -36,7 +36,7 @@ object StreamConfig {
 
             Mode.MAXIMUM -> Profile(
                 fps = 60,
-                bitrate = 20_000_000
+                bitrate = 30_000_000
             )
         }
     }
