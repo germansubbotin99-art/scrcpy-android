@@ -42,6 +42,8 @@ import tech.devline.scropy_ui.scrcpy.ControlSender
 import tech.devline.scropy_ui.scrcpy.ScrcpySession
 import tech.devline.scropy_ui.scrcpy.VideoDecoder
 import tech.devline.scropy_ui.operator.ScrcpyStreamSettings
+import tech.devline.scropy_ui.operator.StreamModePanel
+import tech.devline.scropy_ui.operator.StreamConfig
 import tech.devline.scropy_ui.ui.theme.ScropyTheme
 import kotlin.math.roundToInt
 
@@ -95,6 +97,14 @@ class StreamActivity : ComponentActivity() {
         pendingUsbDevice = usbDevice
 
         setContent {
+
+        var selectedMode by remember { mutableStateOf(StreamConfig.currentMode) }
+        StreamModePanel(
+            onModeChanged = { mode ->
+                selectedMode = mode
+                StreamConfig.currentMode = mode
+            }
+        )
             ScropyTheme {
                 StreamScreen(
                     statusText = statusText.value,
