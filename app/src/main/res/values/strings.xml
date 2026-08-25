@@ -1,35 +1,75 @@
 <resources>
     <string name="app_name">STITCHLINK • ОРБИТА</string>
+    <string name="app_subtitle">Система управления Android-устройствами</string>
+    <string name="system_ready">Система готова</string>
+
+    <string name="devices">Устройства</string>
+    <string name="saved_devices_empty">Сохранённых устройств пока нет</string>
+    <string name="no_connected_devices">Нет подключённых устройств</string>
+    <string name="add_device">Добавить</string>
+    <string name="new_connection">Новое подключение</string>
+    <string name="edit_device">Изменить устройство</string>
+    <string name="delete_device">Удалить устройство</string>
+
     <string name="connect_title">Подключение устройства</string>
+    <string name="choose_transport">Выберите способ подключения</string>
+    <string name="wifi_connection">Беспроводное подключение</string>
+    <string name="wifi_connection_hint">Подключение по Wi‑Fi</string>
+    <string name="usb_connection">Кабельное подключение</string>
+    <string name="usb_connection_hint">Подключение по USB OTG</string>
     <string name="host_hint">IP-адрес устройства (например 192.168.1.5)</string>
     <string name="port_hint">ADB-порт (по умолчанию 5555)</string>
     <string name="btn_connect">Подключить по Wi‑Fi</string>
     <string name="btn_usb">Подключить по USB / OTG</string>
     <string name="scan_usb">Сканировать USB-устройства</string>
-    <string name="new_connection">Новое подключение</string>
-    <string name="saved_devices_empty">Сохранённых устройств пока нет</string>
+    <string name="search_devices">Поиск устройств</string>
     <string name="connect">Подключить</string>
     <string name="disconnect">Отключить</string>
-    <string name="devices">Устройства</string>
-    <string name="settings">Настройки</string>
+
     <string name="stream">Трансляция</string>
+    <string name="start_stream">Запустить трансляцию</string>
+    <string name="stream_active">Трансляция активна</string>
+    <string name="channel_active">Канал активен</string>
     <string name="terminal">Терминал</string>
+    <string name="settings">Настройки</string>
+    <string name="about">О приложении</string>
+
+    <string name="back">Назад</string>
+    <string name="home">Главная</string>
+    <string name="recent_apps">Приложения</string>
+    <string name="rotate">Поворот</string>
+    <string name="volume_up">Громкость +</string>
+    <string name="volume_down">Громкость −</string>
+    <string name="sound">Звук</string>
+    <string name="screen">Экран</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
     <string name="retry">Повторить</string>
+    <string name="close">Закрыть</string>
+
+    <string name="status_waiting">Ожидание соединения…</string>
+    <string name="status_searching">Поиск устройства…</string>
     <string name="status_connecting">Подключение…</string>
+    <string name="status_connected">Соединение установлено</string>
     <string name="status_pushing">Подготовка трансляции…</string>
     <string name="status_starting">Запуск изображения…</string>
     <string name="status_streaming">Трансляция активна</string>
+    <string name="status_reconnecting">Повторное подключение…</string>
+    <string name="status_usb_connecting">Подключение по USB…</string>
+
+    <string name="error">Ошибка</string>
     <string name="error_no_server">Сервер трансляции не найден.</string>
     <string name="error_connection">Ошибка подключения: %1$s</string>
+    <string name="error_usb_connection">Ошибка USB-подключения</string>
     <string name="trust_prompt">Разрешите USB-отладку на подключённом устройстве.</string>
+
     <string name="about_title">О STITCHLINK • ОРБИТА</string>
-    <string name="about_text">STITCHLINK • ОРБИТА — система трансляции изображения для операторских Android-устройств. Оптимизирована для USB OTG, низкой задержки и работы с оборудованием БПЛА.</string>
+    <string name="about_text">STITCHLINK • ОРБИТА — система управления и трансляции изображения для операторских Android-устройств. Оптимизирована для USB OTG, низкой задержки и работы с оборудованием БПЛА.</string>
     <string name="developer_label">Разработчик:</string>
     <string name="developer_name">STITCHLINK Engineering</string>
     <string name="technical_lead_label">Технический руководитель:</string>
     <string name="technical_lead_name">Nord</string>
+
     <string name="mode_low_load">Режим низкой нагрузки</string>
     <string name="mode_flight">Режим полёта</string>
     <string name="engineering_mode">Инженерный режим</string>
