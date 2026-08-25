@@ -110,7 +110,9 @@ about_replacement = '''val annotated = buildAnnotatedString {
                 }
             }
             AlertDialog('''
-text, count = about_pattern.subn(about_replacement, text, count=1)
+# Используем функцию-замену: re.sub не интерпретирует \\n как реальный перевод строки
+# внутри генерируемого Kotlin-литерала.
+text, count = about_pattern.subn(lambda _match: about_replacement, text, count=1)
 if count != 1:
     raise RuntimeError("Не удалось найти блок About для русификации")
 MAIN.write_text(text, encoding="utf-8")
