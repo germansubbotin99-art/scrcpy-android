@@ -15,6 +15,7 @@ fun StreamOverlay(
     modifier: Modifier = Modifier
 ) {
     val profile = StreamConfig.current()
+    val mode = StreamConfig.currentMode
 
     Surface(
         modifier = modifier,
@@ -27,7 +28,7 @@ fun StreamOverlay(
             modifier = Modifier.padding(12.dp)
         ) {
             Text("STITCHLINK ORBITA")
-            Text("STREAM: ${profile.name}")
+            Text("STREAM: ${mode.name}")
             Text("${profile.fps} FPS")
             Text("${profile.bitrate / 1_000_000} Mbps")
         }
