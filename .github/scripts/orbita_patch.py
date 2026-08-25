@@ -110,8 +110,7 @@ about_replacement = '''val annotated = buildAnnotatedString {
                 }
             }
             AlertDialog('''
-# Используем функцию-замену: re.sub не интерпретирует \\n как реальный перевод строки
-# внутри генерируемого Kotlin-литерала.
+# Функция-замена сохраняет обратные слэши в Kotlin-строках.
 text, count = about_pattern.subn(lambda _match: about_replacement, text, count=1)
 if count != 1:
     raise RuntimeError("Не удалось найти блок About для русификации")
