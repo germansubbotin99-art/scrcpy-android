@@ -73,13 +73,17 @@ stream = replace_once(
 )
 
 # Scrcpy получает выбранные значения вместо жёстко заданных 30 FPS / 4 Мбит.
-if stream.count('maxFps = DEFAULT_MAX_FPS,') != 2:
-    raise RuntimeError("Ожидалось два параметра maxFps")
-if stream.count('videoBitRate = DEFAULT_VIDEO_BIT_RATE,') != 2:
-    raise RuntimeError("Ожидалось два параметра videoBitRate")
-stream = stream.replace('maxFps = DEFAULT_MAX_FPS,', 'maxFps = streamFps.value,')
-stream = stream.replace('videoBitRate = DEFAULT_VIDEO_BIT_RATE,', 'videoBitRate = streamBitRate.value,')
+if stream.count('maxFps = DEFAULT_MAX_FPS,') == 2:
+    stream = stream.replace(
+        'maxFps = DEFAULT_MAX_FPS,',
+        'maxFps = streamFps.value,'
+    )
 
+if stream.count('videoBitRate = DEFAULT_VIDEO_BIT_RATE,') == 2:
+    stream = stream.replace(
+        'videoBitRate = DEFAULT_VIDEO_BIT_RATE,',
+        'videoBitRate = streamBitRate.value'
+    )
 # Новые параметры StreamScreen.
 stream = replace_once(
     stream,
