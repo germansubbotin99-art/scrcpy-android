@@ -18,6 +18,9 @@ jobs:
       - name: Apply ORBITA v1.5 stream settings
         run: python3 .github/scripts/orbita_v15_stream_settings.py
 
+      - name: Apply ORBITA v1.5.1 operator profiles
+        run: python3 .github/scripts/orbita_v151_profiles.py
+
       - name: Fetch BoringSSL dependency
         run: |
           rm -rf app/src/main/cpp/boringssl
@@ -44,6 +47,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: STITCHLINK-ORBITA-v1.5-apk
+          name: STITCHLINK-ORBITA-v1.5.1-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
