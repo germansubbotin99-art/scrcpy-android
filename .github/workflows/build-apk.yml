@@ -24,6 +24,9 @@ jobs:
       - name: Apply ORBITA v1.5.2 quick connect status
         run: python3 .github/scripts/orbita_v152_quick_connect.py
 
+      - name: Apply ORBITA v1.5.3 auto reconnect
+        run: python3 .github/scripts/orbita_v153_autoreconnect.py
+
       - name: Fetch BoringSSL dependency
         run: |
           rm -rf app/src/main/cpp/boringssl
@@ -50,6 +53,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: STITCHLINK-ORBITA-v1.5.2-apk
+          name: STITCHLINK-ORBITA-v1.5.3-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
