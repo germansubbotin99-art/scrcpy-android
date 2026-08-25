@@ -41,6 +41,7 @@ import tech.devline.scropy_ui.scrcpy.AudioPlayer
 import tech.devline.scropy_ui.scrcpy.ControlSender
 import tech.devline.scropy_ui.scrcpy.ScrcpySession
 import tech.devline.scropy_ui.scrcpy.VideoDecoder
+import tech.devline.scropy_ui.operator.ScrcpyStreamSettings
 import tech.devline.scropy_ui.ui.theme.ScropyTheme
 import kotlin.math.roundToInt
 
@@ -156,8 +157,8 @@ class StreamActivity : ComponentActivity() {
                     context = this@StreamActivity,
                     adb = adbConn!!,
                     enableAudio = true,
-                    maxFps = DEFAULT_MAX_FPS,
-                    videoBitRate = DEFAULT_VIDEO_BIT_RATE,
+                    maxFps = ScrcpyStreamSettings.fps,
+                    videoBitRate = ScrcpyStreamSettings.bitrate,
                 )
                 startMediaSession(session!!, false)
             } catch (e: Exception) {
@@ -181,8 +182,8 @@ class StreamActivity : ComponentActivity() {
                     context = this@StreamActivity,
                     adb = adbConn!!,
                     enableAudio = true,
-                    maxFps = DEFAULT_MAX_FPS,
-                    videoBitRate = DEFAULT_VIDEO_BIT_RATE,
+                    maxFps = ScrcpyStreamSettings.fps,
+                    videoBitRate = ScrcpyStreamSettings.bitrate,
                 )
                 startMediaSession(session!!, true)
             } catch (e: Exception) {
