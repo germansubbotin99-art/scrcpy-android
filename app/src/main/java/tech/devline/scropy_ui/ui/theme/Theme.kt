@@ -26,7 +26,7 @@ private val OrbitaColorScheme = darkColorScheme(
 )
 
 @Composable
-fun ScropyTheme(
+fun OrbitaTheme(
     darkTheme: Boolean = true,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
@@ -37,3 +37,18 @@ fun ScropyTheme(
         content = content,
     )
 }
+
+/**
+ * Временная совместимость со старым именем темы.
+ * Удалим после перевода MainActivity и StreamActivity на OrbitaTheme.
+ */
+@Composable
+fun ScropyTheme(
+    darkTheme: Boolean = true,
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit
+) = OrbitaTheme(
+    darkTheme = darkTheme,
+    dynamicColor = dynamicColor,
+    content = content,
+)
