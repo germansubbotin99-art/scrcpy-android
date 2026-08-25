@@ -17,7 +17,7 @@ fun StreamModePanel(
         modifier = Modifier.padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text("STITCHLINK STREAM")
+        Text("STITCHLINK ORBITA STREAM")
 
         Button(onClick = {
             StreamConfig.currentMode = StreamConfig.Mode.ECONOMY
@@ -31,6 +31,13 @@ fun StreamModePanel(
             onModeChanged(StreamConfig.Mode.FLIGHT)
         }) {
             Text("🚁 FLIGHT  60 FPS / 12 Mbps")
+        }
+
+        Button(onClick = {
+            StreamConfig.currentMode = StreamConfig.Mode.PILOT
+            onModeChanged(StreamConfig.Mode.PILOT)
+        }) {
+            Text("🚀 PILOT  60 FPS / 20 Mbps")
         }
 
         Button(onClick = {

@@ -1,13 +1,11 @@
 package tech.devline.scropy_ui.operator
 
-/**
- * STITCHLINK ORBITA stream profile manager.
- * Central place for video profiles used by operator mode.
- */
 object StreamProfileManager {
+
     enum class Profile {
         ECONOMY,
         FLIGHT,
+        PILOT,
         MAXIMUM
     }
 
@@ -28,6 +26,12 @@ object StreamProfileManager {
             fps = 60,
             bitrate = 12_000_000,
             label = "FLIGHT"
+        )
+
+        Profile.PILOT -> StreamSettings(
+            fps = 60,
+            bitrate = 20_000_000,
+            label = "PILOT"
         )
 
         Profile.MAXIMUM -> StreamSettings(

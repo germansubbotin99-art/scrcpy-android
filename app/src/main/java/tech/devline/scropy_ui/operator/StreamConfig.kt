@@ -5,6 +5,7 @@ object StreamConfig {
     enum class Mode {
         ECONOMY,
         FLIGHT,
+        PILOT,
         MAXIMUM
     }
 
@@ -26,6 +27,11 @@ object StreamConfig {
             Mode.FLIGHT -> Profile(
                 fps = 60,
                 bitrate = 12_000_000
+            )
+
+            Mode.PILOT -> Profile(
+                fps = 60,
+                bitrate = 20_000_000
             )
 
             Mode.MAXIMUM -> Profile(
